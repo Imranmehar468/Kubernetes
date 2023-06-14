@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ga-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ga-service
+  template:
+    metadata:
+      labels:
+        app: ga-service
+    spec:
+      containers:
+      - name: ga-service
+        image: platformcoresasu/ga-service:main
+        ports:
+        - containerPort: 3012
+        envFrom:
+        - secretRef:
+            name: ga-prod-env-vars
+      imagePullSecrets:
+        - name: docker-report
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ga-service
+spec:
+  selector:
+    app: ga-service
+  ports:
+  - port: 3012
+    targetPort: 3012

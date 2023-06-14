@@ -1,0 +1,19 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: sandbox
+  namespace: metallb-system
+spec:
+  addresses:
+  - 130.185.118.171/32
+  - 193.164.133.69/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: sandbox
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - sandbox

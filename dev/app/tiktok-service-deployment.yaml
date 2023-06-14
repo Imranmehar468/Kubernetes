@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tiktok-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tiktok-service
+  template:
+    metadata:
+      labels:
+        app: tiktok-service
+    spec:
+      containers:
+      - name: tiktok-service
+        image: platformcoresasu/tiktok-service:dev
+        ports:
+        - containerPort: 3006
+        envFrom:
+        - secretRef:
+            name: tiktok-dev-env-vars
+      imagePullSecrets:
+        - name: docker-dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tiktok-service
+spec:
+  selector:
+    app: tiktok-service
+  ports:
+  - port: 3006
+    targetPort: 3006

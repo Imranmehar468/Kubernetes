@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress-service
+  template:
+    metadata:
+      labels:
+        app: wordpress-service
+    spec:
+      containers:
+      - name: wordpress-service
+        image: platformcoresasu/wordpress-service:main
+        ports:
+        - containerPort: 3004
+        envFrom:
+        - secretRef:
+            name: wordpress-prod-env-vars
+      imagePullSecrets:
+        - name: docker-report
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-service
+spec:
+  selector:
+    app: wordpress-service
+  ports:
+  - port: 3004
+    targetPort: 3004

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linkedin-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linkedin-service
+  template:
+    metadata:
+      labels:
+        app: linkedin-service
+    spec:
+      containers:
+      - name: linkedin-service
+        image: platformcoresasu/linkedin-service:dev
+        ports:
+        - containerPort: 3015
+        envFrom:
+        - secretRef:
+            name: linkedin-dev-env-vars
+      imagePullSecrets:
+        - name: docker-dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: linkedin-service
+spec:
+  selector:
+    app: linkedin-service
+  ports:
+  - port: 3015
+    targetPort: 3015

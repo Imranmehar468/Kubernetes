@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: report-service
+  template:
+    metadata:
+      labels:
+        app: report-service
+    spec:
+      containers:
+      - name: report-service
+        image: platformcoresasu/report-service:dev
+        ports:
+        - containerPort: 3010
+        envFrom:
+        - secretRef:
+            name: report-dev-env-vars
+      imagePullSecrets:
+        - name: docker-dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: report-service
+spec:
+  selector:
+    app: report-service
+  ports:
+  - port: 3010
+    targetPort: 3010

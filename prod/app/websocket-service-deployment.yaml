@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websocket-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websocket-service
+  template:
+    metadata:
+      labels:
+        app: websocket-service
+    spec:
+      containers:
+      - name: websocket-service
+        image: platformcoresasu/websocket-server:main
+        ports:
+        - containerPort: 3015
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: websocket-prod-env-vars
+      imagePullSecrets:
+        - name: docker-report
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: websocket-service
+spec:
+  selector:
+    app: websocket-service
+  ports:
+  - name: websocket
+    port: 3015
+    targetPort: 3015
+  - name: socket
+    port: 5000
+    targetPort: 5000

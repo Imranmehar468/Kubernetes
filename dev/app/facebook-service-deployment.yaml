@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: facebook-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: facebook-service
+  template:
+    metadata:
+      labels:
+        app: facebook-service
+    spec:
+      containers:
+      - name: facebook-service
+        image: platformcoresasu/facebook-service:dev
+        ports:
+        - containerPort: 3013
+        envFrom:
+        - secretRef:
+            name: facebook-dev-env-vars
+      imagePullSecrets:
+        - name: docker-dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: facebook-service
+spec:
+  selector:
+    app: facebook-service
+  ports:
+  - port: 3013
+    targetPort: 3013

@@ -1,0 +1,130 @@
+NAMESPACE        NAME                                            READY   STATUS             RESTARTS          AGE
+cert-manager     pod/cert-manager-69cdc85fc8-jjsfg               1/1     Running            0                 16d
+cert-manager     pod/cert-manager-cainjector-744bb89575-9xvkr    1/1     Running            0                 16d
+cert-manager     pod/cert-manager-webhook-759d6dcbf7-h84d7       1/1     Running            0                 16d
+default          pod/api-gateway-7b647fdbf7-4664t                1/1     Running            0                 13d
+default          pod/facebook-service-556c5d85d7-dtqmx           0/1     CrashLoopBackOff   232 (28s ago)     22h
+default          pod/financial-service-dbb49b7d-l6ncl            1/1     Running            0                 13d
+default          pod/frontend-service-678594dd8f-mqjqd           1/1     Running            0                 12d
+default          pod/ga-service-55c54d8486-9jjnq                 1/1     Running            0                 13d
+default          pod/instagram-service-5bf9d86d46-s67j9          0/1     CrashLoopBackOff   232 (91s ago)     13d
+default          pod/linkedin-service-f447bcd6f-j6knb            0/1     CrashLoopBackOff   232 (92s ago)     13d
+default          pod/report-service-66dd75dc5d-zkstr             1/1     Running            0                 13d
+default          pod/tiktok-service-854f8c7f69-c8kcp             0/1     CrashLoopBackOff   232 (70s ago)     13d
+default          pod/twitter-service-68c9456c4b-cxqpg            0/1     CrashLoopBackOff   232 (77s ago)     12d
+default          pod/websocket-service-586db8579b-2rcs8          1/1     Running            0                 12d
+default          pod/wordpress-service-6f6c86674c-5xfqd          1/1     Running            0                 12d
+default          pod/youtube-service-5bc49f46c6-qggjp            0/1     CrashLoopBackOff   231 (2m14s ago)   12d
+ingress-nginx    pod/ingress-nginx-controller-644d455497-r9hdj   1/1     Running            0                 16d
+kube-system      pod/calico-kube-controllers-674fff74c8-n7bgw    1/1     Running            0                 16d
+kube-system      pod/calico-node-kb9kl                           1/1     Running            0                 16d
+kube-system      pod/coredns-5d78c9869d-9g7p2                    1/1     Running            0                 16d
+kube-system      pod/coredns-5d78c9869d-wd4bv                    1/1     Running            0                 16d
+kube-system      pod/etcd-vmi1274876                             1/1     Running            4                 16d
+kube-system      pod/kube-apiserver-vmi1274876                   1/1     Running            80                16d
+kube-system      pod/kube-controller-manager-vmi1274876          1/1     Running            64                16d
+kube-system      pod/kube-proxy-qthp2                            1/1     Running            0                 16d
+kube-system      pod/kube-scheduler-vmi1274876                   1/1     Running            81                16d
+metallb-system   pod/controller-7948676b95-sjwmz                 1/1     Running            0                 16d
+metallb-system   pod/speaker-k65tf                               1/1     Running            0                 16d
+
+NAMESPACE        NAME                                         TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)                      AGE
+cert-manager     service/cert-manager-webhook                 ClusterIP      10.105.78.55     <none>           443/TCP                      16d
+default          service/api-gateway                          ClusterIP      10.99.95.236     <none>           3000/TCP                     13d
+default          service/facebook-service                     ClusterIP      10.101.140.214   <none>           3013/TCP                     13d
+default          service/financial-service                    ClusterIP      10.103.200.193   <none>           3002/TCP                     13d
+default          service/frontend-service                     ClusterIP      10.105.90.216    <none>           80/TCP                       12d
+default          service/ga-service                           ClusterIP      10.102.58.64     <none>           3012/TCP                     13d
+default          service/instagram-service                    ClusterIP      10.107.228.245   <none>           3014/TCP                     13d
+default          service/kubernetes                           ClusterIP      10.96.0.1        <none>           443/TCP                      16d
+default          service/linkedin-service                     ClusterIP      10.105.247.171   <none>           3015/TCP                     13d
+default          service/report-service                       ClusterIP      10.106.123.202   <none>           3010/TCP                     13d
+default          service/tiktok-service                       ClusterIP      10.98.5.160      <none>           3006/TCP                     13d
+default          service/twitter-service                      ClusterIP      10.101.106.16    <none>           3012/TCP                     12d
+default          service/websocket-service                    ClusterIP      10.96.173.32     <none>           3015/TCP,5000/TCP            12d
+default          service/wordpress-service                    ClusterIP      10.105.21.238    <none>           3004/TCP                     12d
+default          service/youtube-service                      ClusterIP      10.110.245.40    <none>           3011/TCP                     12d
+ingress-nginx    service/ingress-nginx-controller             LoadBalancer   10.99.217.229    154.38.166.205   80:31905/TCP,443:30714/TCP   16d
+ingress-nginx    service/ingress-nginx-controller-admission   ClusterIP      10.99.99.187     <none>           443/TCP                      16d
+kube-system      service/kube-dns                             ClusterIP      10.96.0.10       <none>           53/UDP,53/TCP,9153/TCP       16d
+metallb-system   service/webhook-service                      ClusterIP      10.103.177.72    <none>           443/TCP                      16d
+
+NAMESPACE        NAME                         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system      daemonset.apps/calico-node   1         1         1       1            1           kubernetes.io/os=linux   16d
+kube-system      daemonset.apps/kube-proxy    1         1         1       1            1           kubernetes.io/os=linux   16d
+metallb-system   daemonset.apps/speaker       1         1         1       1            1           kubernetes.io/os=linux   16d
+
+NAMESPACE        NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+cert-manager     deployment.apps/cert-manager               1/1     1            1           16d
+cert-manager     deployment.apps/cert-manager-cainjector    1/1     1            1           16d
+cert-manager     deployment.apps/cert-manager-webhook       1/1     1            1           16d
+default          deployment.apps/api-gateway                1/1     1            1           13d
+default          deployment.apps/facebook-service           0/1     1            0           13d
+default          deployment.apps/financial-service          1/1     1            1           13d
+default          deployment.apps/frontend-service           1/1     1            1           12d
+default          deployment.apps/ga-service                 1/1     1            1           13d
+default          deployment.apps/instagram-service          0/1     1            0           13d
+default          deployment.apps/linkedin-service           0/1     1            0           13d
+default          deployment.apps/report-service             1/1     1            1           13d
+default          deployment.apps/tiktok-service             0/1     1            0           13d
+default          deployment.apps/twitter-service            0/1     1            0           12d
+default          deployment.apps/websocket-service          1/1     1            1           12d
+default          deployment.apps/wordpress-service          1/1     1            1           12d
+default          deployment.apps/youtube-service            0/1     1            0           12d
+ingress-nginx    deployment.apps/ingress-nginx-controller   1/1     1            1           16d
+kube-system      deployment.apps/calico-kube-controllers    1/1     1            1           16d
+kube-system      deployment.apps/coredns                    2/2     2            2           16d
+metallb-system   deployment.apps/controller                 1/1     1            1           16d
+
+NAMESPACE        NAME                                                  DESIRED   CURRENT   READY   AGE
+cert-manager     replicaset.apps/cert-manager-69cdc85fc8               1         1         1       16d
+cert-manager     replicaset.apps/cert-manager-cainjector-744bb89575    1         1         1       16d
+cert-manager     replicaset.apps/cert-manager-webhook-759d6dcbf7       1         1         1       16d
+default          replicaset.apps/api-gateway-59fb7f7b66                0         0         0       13d
+default          replicaset.apps/api-gateway-69d5c8cc5b                0         0         0       13d
+default          replicaset.apps/api-gateway-7b647fdbf7                1         1         1       13d
+default          replicaset.apps/facebook-service-556c5d85d7           1         1         0       22h
+default          replicaset.apps/facebook-service-558868fd76           0         0         0       13d
+default          replicaset.apps/facebook-service-6c46848b64           0         0         0       13d
+default          replicaset.apps/facebook-service-79b85f6c6            0         0         0       13d
+default          replicaset.apps/facebook-service-cd46c6b55            0         0         0       13d
+default          replicaset.apps/financial-service-5d95c69687          0         0         0       13d
+default          replicaset.apps/financial-service-69f5c5d49b          0         0         0       13d
+default          replicaset.apps/financial-service-84f6447d4f          0         0         0       13d
+default          replicaset.apps/financial-service-dbb49b7d            1         1         1       13d
+default          replicaset.apps/frontend-service-678594dd8f           1         1         1       12d
+default          replicaset.apps/frontend-service-7c5d9d4976           0         0         0       12d
+default          replicaset.apps/frontend-service-7ddcfd4bff           0         0         0       12d
+default          replicaset.apps/ga-service-55c54d8486                 1         1         1       13d
+default          replicaset.apps/ga-service-679457dbcb                 0         0         0       13d
+default          replicaset.apps/ga-service-7659477d6                  0         0         0       13d
+default          replicaset.apps/ga-service-85b644664c                 0         0         0       13d
+default          replicaset.apps/instagram-service-5697cf945b          0         0         0       13d
+default          replicaset.apps/instagram-service-5bf9d86d46          1         1         0       13d
+default          replicaset.apps/instagram-service-7f65d86bb           0         0         0       13d
+default          replicaset.apps/linkedin-service-58f9fc978f           0         0         0       13d
+default          replicaset.apps/linkedin-service-6b85666b47           0         0         0       13d
+default          replicaset.apps/linkedin-service-f447bcd6f            1         1         0       13d
+default          replicaset.apps/report-service-588976bcb              0         0         0       13d
+default          replicaset.apps/report-service-66dd75dc5d             1         1         1       13d
+default          replicaset.apps/report-service-7b49f7d59b             0         0         0       13d
+default          replicaset.apps/tiktok-service-66847dd759             0         0         0       13d
+default          replicaset.apps/tiktok-service-854f8c7f69             1         1         0       13d
+default          replicaset.apps/tiktok-service-cf6d6ffc               0         0         0       13d
+default          replicaset.apps/twitter-service-586bb54db5            0         0         0       12d
+default          replicaset.apps/twitter-service-68974696bf            0         0         0       12d
+default          replicaset.apps/twitter-service-68c9456c4b            1         1         0       12d
+default          replicaset.apps/twitter-service-6ff86466bb            0         0         0       12d
+default          replicaset.apps/websocket-service-586db8579b          1         1         1       12d
+default          replicaset.apps/websocket-service-588744bdc7          0         0         0       12d
+default          replicaset.apps/websocket-service-6f9dc89df9          0         0         0       12d
+default          replicaset.apps/wordpress-service-5658446cb4          0         0         0       12d
+default          replicaset.apps/wordpress-service-6f6c86674c          1         1         1       12d
+default          replicaset.apps/wordpress-service-8c8d8bdd6           0         0         0       12d
+default          replicaset.apps/youtube-service-565887cc66            0         0         0       12d
+default          replicaset.apps/youtube-service-5bc49f46c6            1         1         0       12d
+default          replicaset.apps/youtube-service-67d6f698b9            0         0         0       12d
+ingress-nginx    replicaset.apps/ingress-nginx-controller-644d455497   1         1         1       16d
+kube-system      replicaset.apps/calico-kube-controllers-674fff74c8    1         1         1       16d
+kube-system      replicaset.apps/coredns-5d78c9869d                    2         2         2       16d
+metallb-system   replicaset.apps/controller-7948676b95                 1         1         1       16d

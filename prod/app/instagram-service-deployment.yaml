@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instagram-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: instagram-service
+  template:
+    metadata:
+      labels:
+        app: instagram-service
+    spec:
+      containers:
+      - name: instagram-service
+        image: platformcoresasu/instagram-service:main
+        ports:
+        - containerPort: 3014
+        envFrom:
+        - secretRef:
+            name: instagram-prod-env-vars
+      imagePullSecrets:
+        - name: docker-report
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: instagram-service
+spec:
+  selector:
+    app: instagram-service
+  ports:
+  - port: 3014
+    targetPort: 3014

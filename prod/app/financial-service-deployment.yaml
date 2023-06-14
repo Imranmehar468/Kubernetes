@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financial-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financial-service
+  template:
+    metadata:
+      labels:
+        app: financial-service
+    spec:
+      containers:
+      - name: financial-service
+        image: platformcoresasu/financial-service:main
+        ports:
+        - containerPort: 3002
+        envFrom:
+        - secretRef:
+            name: financial-prod-env-vars
+      imagePullSecrets:
+        - name: docker-report
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: financial-service
+spec:
+  selector:
+    app: financial-service
+  ports:
+  - port: 3002
+    targetPort: 3002
